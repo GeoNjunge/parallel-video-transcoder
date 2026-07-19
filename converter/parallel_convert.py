@@ -6,7 +6,7 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 # Configurations
 DRIVE_PATH = "/home/ubuntu/projects/Album Downloader Python" 
 VIDEO_EXTENSIONS = ('.mp4', '.mkv', '.avi', '.mov', '.m4v')
-MAX_WORKERS = 2  # Hardcapped to your 2 physical cores
+MAX_WORKERS = 2  # Hardcapped to 2 physical cores(that was my computer's yours might be better)
 
 def check_codec(file_path):
     cmd = [
