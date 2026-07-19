@@ -30,7 +30,7 @@ def process_single_video(file_path):
     
     # Check codec first to avoid unneeded work
     if check_codec(file_path) != "av1":
-        return f"⏭️ Skipped (Not AV1): {filename}"
+        return f"Skipped (Not AV1): {filename}"
 
     # -threads 1 prevents ffmpeg from scaling past its assigned worker core
     cmd = [
@@ -50,18 +50,18 @@ def process_single_video(file_path):
         os.remove(file_path)         
         os.rename(temp_output, file_path) 
         elapsed = time.time() - start_time
-        return f"✅ Successfully converted {filename} in {elapsed:.2f}s"
+        return f"Successfully converted {filename} in {elapsed:.2f}s"
     except subprocess.CalledProcessError:
         if os.path.exists(temp_output):
             os.path.exists(temp_output) and os.remove(temp_output)
-        return f"❌ Failed to convert: {filename}"
+        return f"Failed to convert: {filename}"
 
 def main():
     if not os.path.exists(DRIVE_PATH):
         print(f"Error: Path {DRIVE_PATH} does not exist.")
         return
 
-    print("🚀 Initializing HPC-style Parallel Video Processing Pipeline...")
+    print("Initializing HPC-style Parallel Video Processing Pipeline...")
     print(f"Target Path: {DRIVE_PATH} | Parallel Workers: {MAX_WORKERS}\n")
     
     # Discover all target files
@@ -85,7 +85,7 @@ def main():
             print(f"[{i}/{total_files}] {result_message}")
 
     total_elapsed = time.time() - global_start
-    print(f"\n🎉 Pipeline Complete! Total execution time: {total_elapsed:.2f} seconds.")
+    print(f"\nPipeline Complete! Total execution time: {total_elapsed:.2f} seconds.")
 
 if __name__ == "__main__":
     main()
